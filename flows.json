@@ -1,0 +1,319 @@
+[
+    {
+        "id": "5489fd9d.7c0054",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "feb1d2dd.4c6ab",
+        "type": "microphone",
+        "z": "5489fd9d.7c0054",
+        "name": "",
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "b90ce1b3.084b9"
+            ]
+        ]
+    },
+    {
+        "id": "2c28f942.29a7a6",
+        "type": "ui_button",
+        "z": "5489fd9d.7c0054",
+        "name": "",
+        "group": "a00b9afe.3a4cd8",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "quotation 1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"command\":\"Prevention is better than cure\"}",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 160,
+        "y": 300,
+        "wires": [
+            [
+                "afec316a.a62f3",
+                "5f4241ce.026a5"
+            ]
+        ]
+    },
+    {
+        "id": "afec316a.a62f3",
+        "type": "ibmiot out",
+        "z": "5489fd9d.7c0054",
+        "authentication": "apiKey",
+        "apiKey": "2e7088b0.677ec8",
+        "outputType": "cmd",
+        "deviceId": "1001",
+        "deviceType": "iotdevice",
+        "eventCommandType": "home",
+        "format": "json",
+        "data": "data",
+        "qos": 0,
+        "name": "IBM IoT",
+        "service": "registered",
+        "x": 640,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "ca0d5e4d.e16c9",
+        "type": "debug",
+        "z": "5489fd9d.7c0054",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "b90ce1b3.084b9",
+        "type": "watson-speech-to-text",
+        "z": "5489fd9d.7c0054",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": false,
+        "lang": "en-US",
+        "langhidden": "",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "NoCustomisationSetting",
+        "custom-weight": "0.5",
+        "band": "BroadbandModel",
+        "bandhidden": "BroadbandModel",
+        "keywords": "",
+        "keywords-threshold": "0.5",
+        "word-confidence": false,
+        "password": "",
+        "apikey": "ZEm3stuxrxLZtE--7YeOJ_XRvQtkJBc4wy3Cuvp10Sn6",
+        "payload-response": true,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "service-endpoint": "https://api.eu-gb.speech-to-text.watson.cloud.ibm.com/instances/80d7922b-8ff4-41f6-a193-a1743c3778fa",
+        "x": 440,
+        "y": 180,
+        "wires": [
+            [
+                "ca0d5e4d.e16c9",
+                "6f110a11.fa6394"
+            ]
+        ]
+    },
+    {
+        "id": "6f110a11.fa6394",
+        "type": "function",
+        "z": "5489fd9d.7c0054",
+        "name": "",
+        "func": "msg.payload={\"command\":msg.payload}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 180,
+        "wires": [
+            [
+                "ca0d5e4d.e16c9",
+                "afec316a.a62f3",
+                "5f4241ce.026a5"
+            ]
+        ]
+    },
+    {
+        "id": "7a286275.8facec",
+        "type": "ui_microphone",
+        "z": "5489fd9d.7c0054",
+        "name": "",
+        "group": "a00b9afe.3a4cd8",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "maxLength": 5,
+        "maxRecogLength": 5,
+        "timeslice": 0,
+        "press": "click",
+        "mode": "audio",
+        "interimResults": false,
+        "x": 280,
+        "y": 240,
+        "wires": [
+            [
+                "b90ce1b3.084b9"
+            ]
+        ]
+    },
+    {
+        "id": "5f4241ce.026a5",
+        "type": "cloudant out",
+        "z": "5489fd9d.7c0054",
+        "name": "",
+        "cloudant": "",
+        "database": "smartnoticeboarddata",
+        "service": "node-red-yipuz-2021--cloudant-1620812456426-9822",
+        "payonly": false,
+        "operation": "insert",
+        "x": 870,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "2ab127d6.e6eaa8",
+        "type": "ui_button",
+        "z": "5489fd9d.7c0054",
+        "name": "",
+        "group": "a00b9afe.3a4cd8",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "quotation 2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"command\":\"Observation is the best teacher\"}",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 340,
+        "wires": [
+            [
+                "afec316a.a62f3",
+                "5f4241ce.026a5"
+            ]
+        ]
+    },
+    {
+        "id": "a9d40eda.2521b",
+        "type": "ui_button",
+        "z": "5489fd9d.7c0054",
+        "name": "",
+        "group": "a00b9afe.3a4cd8",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "quotation 3",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"command\":\"all the glitters is not gold\"}",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 380,
+        "wires": [
+            [
+                "afec316a.a62f3",
+                "5f4241ce.026a5"
+            ]
+        ]
+    },
+    {
+        "id": "409d3b88.b008e4",
+        "type": "ui_button",
+        "z": "5489fd9d.7c0054",
+        "name": "",
+        "group": "a00b9afe.3a4cd8",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "quotation 5",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"command\":\"Time waits for none\"}",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 480,
+        "wires": [
+            [
+                "afec316a.a62f3",
+                "5f4241ce.026a5"
+            ]
+        ]
+    },
+    {
+        "id": "4fe3a809.11a398",
+        "type": "ui_button",
+        "z": "5489fd9d.7c0054",
+        "name": "",
+        "group": "a00b9afe.3a4cd8",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "quotation 4",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"command\":\"Silence is a source of great strength\"}",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 420,
+        "wires": [
+            [
+                "afec316a.a62f3",
+                "5f4241ce.026a5"
+            ]
+        ]
+    },
+    {
+        "id": "a00b9afe.3a4cd8",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "18fe728f.e6852d",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "2e7088b0.677ec8",
+        "type": "ibmiot",
+        "name": "iotdata",
+        "keepalive": "60",
+        "serverName": "c6kfqv.messaging.internetofthings.ibmcloud.com",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "18fe728f.e6852d",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
